@@ -31,6 +31,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MeatsRepository.cpp">
+    <ClCompile Include="CheeseRepository.cpp">
+    <ClCompile Include="HerbsRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -48,6 +50,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MeatsRepository.h">
+    <ClInclude Include="CheeseRepository.h">
+    <ClInclude Include="HerbsRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
