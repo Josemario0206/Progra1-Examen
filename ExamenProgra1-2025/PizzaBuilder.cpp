@@ -1,6 +1,6 @@
 ﻿#include "PizzaBuilder.h"
 #include <iostream>
-
+#include "MeatsRepository.h"
 PizzaBuilder::PizzaBuilder() {
 }
 
@@ -9,11 +9,14 @@ void PizzaBuilder::BuildPizza() {
     std::cout << "Let's build your pizza!" << std::endl;
 
     SelectTomatoes();
+  void  SelectMeats();
 
     // TODO
     //SelectCheese();
     //SelectHerbs();
-    //SelectMeats();
+  
+
+
 }
 
 void PizzaBuilder::DisplayFinalPizza() const {
@@ -29,7 +32,7 @@ void PizzaBuilder::DisplayFinalPizza() const {
 }
 
 void PizzaBuilder::SelectTomatoes() {
-
+    SelectMeats();
     std::cout << "\n--- Selecting Tomatoes ---" << std::endl;
 
     // TODO: Reusar esta linea, pero con su propio Repositorio.
@@ -63,4 +66,24 @@ void PizzaBuilder::SelectTomatoes() {
 //
 //void PizzaBuilder::SelectMeat() {
 //    // Resolver.    
-//}
+
+void PizzaBuilder::SelectMeats() {
+    std::cout << "\n--- Selecting Meats ---" << std::endl;
+
+    // Igual que el tomate, pero usando el repositorio de carnes
+    IngredientSelector<MeatsRepository> selector(meatsRepo_, availableMeats_, "meat");
+
+    while (true) {
+        selector.DisplayAvailableIngredients();
+
+        std::cout << "\nEnter meat type (or 'done' to finish): ";
+        std::string userChoice;
+        std::getline(std::cin, userChoice);
+
+        if (userChoice == "done" || userChoice == "DONE") {
+            break;
+        }
+
+        selector.AddIngredientToPizza(userChoice, selectedIngredients_);
+    }
+}
