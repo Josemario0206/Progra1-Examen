@@ -1,6 +1,6 @@
 #include "IngredientSelector.h"
 #include <iostream>
-
+#include "HerbsRepository.h"
 template<typename TRepository>
 IngredientSelector<TRepository>::IngredientSelector(TRepository& repository, const std::vector<std::string>& availableItems, const std::string& ingredientType)
     : repository_(repository), availableItems_(availableItems), ingredientType_(ingredientType) {
@@ -43,3 +43,6 @@ bool IngredientSelector<TRepository>::AddIngredientToPizza(const std::string& in
 
 template class IngredientSelector<TomatoesRepository>;
 template class IngredientSelector<CheeseRepository>;    
+#include "HerbsRepository.h"    
+template class IngredientSelector<HerbsRepository>;
+template class IngredientSelector<TomatoesRepository>;

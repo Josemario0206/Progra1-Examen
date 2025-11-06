@@ -2,6 +2,7 @@
 #include <iostream>
 #include "IngredientSelector.h"
 #include "CheeseRepository.h"
+#include "HerbsRepository.h"
 
 PizzaBuilder::PizzaBuilder() {
 }
@@ -13,6 +14,10 @@ void PizzaBuilder::BuildPizza() {
     SelectTomatoes();
     void SelectCheese();
     //SelectHerbs();
+
+    // TODO
+    //SelectCheese();
+    void SelectHerbs();
     //SelectMeats();
 }
 
@@ -30,6 +35,7 @@ void PizzaBuilder::DisplayFinalPizza() const {
 
 void PizzaBuilder::SelectTomatoes() {
 	SelectCheese();
+	SelectHerbs();
     std::cout << "\n--- Selecting Tomatoes ---" << std::endl;
 
     // TODO: Reusar esta linea, pero con su propio Repositorio.
@@ -70,7 +76,32 @@ void PizzaBuilder::SelectCheese() {
 //void PizzaBuilder::SelectHerb() {
 //    // Resolver.    
 //}
+//void PizzaBuilder::SelectCheese() {
+// // Resolver.    
+//}
+//
+void PizzaBuilder::SelectHerbs() {
+    std::cout << "\n--- Selecting Herbs ---" << std::endl;
+
+    IngredientSelector<HerbsRepository> selector(herbRepo_, availableHerbs_, "herb");
+
+    while (true) {
+        selector.DisplayAvailableIngredients();
+
+        std::cout << "\nEnter herb type (or 'done' to finish): ";
+        std::string userChoice;
+        std::getline(std::cin, userChoice);
+
+        if (userChoice == "done" || userChoice == "DONE") {
+            break;
+        }
+
+        selector.AddIngredientToPizza(userChoice, selectedIngredients_);
+    }
+}
+
 //
 //void PizzaBuilder::SelectMeat() {
 //    // Resolver.    
 //}
+
