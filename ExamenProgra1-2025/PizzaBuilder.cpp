@@ -1,6 +1,7 @@
 ﻿#include "PizzaBuilder.h"
 #include <iostream>
 #include "IngredientSelector.h"
+#include "CheeseRepository.h"
 #include "HerbsRepository.h"
 
 PizzaBuilder::PizzaBuilder() {
@@ -11,6 +12,8 @@ void PizzaBuilder::BuildPizza() {
     std::cout << "Let's build your pizza!" << std::endl;
 
     SelectTomatoes();
+    void SelectCheese();
+    //SelectHerbs();
 
     // TODO
     //SelectCheese();
@@ -31,6 +34,7 @@ void PizzaBuilder::DisplayFinalPizza() const {
 }
 
 void PizzaBuilder::SelectTomatoes() {
+	SelectCheese();
 	SelectHerbs();
     std::cout << "\n--- Selecting Tomatoes ---" << std::endl;
 
@@ -53,8 +57,25 @@ void PizzaBuilder::SelectTomatoes() {
 }
 
 // TODO:  Crear cada uno su parte. ☝️ toma el ejemplo de  SelectTomatoes y crea tu propia implementación.
+void PizzaBuilder::SelectCheese() {
+    std::cout << "\n--- Selecting Cheese ---" << std::endl;
+    IngredientSelector<CheeseRepository> selector(cheeseRepo_, availableCheeses_, "cheese");
+    while (true) {
+        selector.DisplayAvailableIngredients();
+        std::cout << "\nEnter cheese type (or 'done' to finish): ";
+        std::string userChoice;
+        std::getline(std::cin, userChoice);
+        if (userChoice == "done" || userChoice == "DONE") {
+            break;
+        }
+        selector.AddIngredientToPizza(userChoice, selectedIngredients_);
+    }
+}
 
 
+//void PizzaBuilder::SelectHerb() {
+//    // Resolver.    
+//}
 //void PizzaBuilder::SelectCheese() {
 // // Resolver.    
 //}
